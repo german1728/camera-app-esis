@@ -46,12 +46,12 @@ var doUpload = function (event) {
         $.ajax({
             url: 'https://content.dropboxapi.com/2/files/upload',
             type: 'post',
-            data: file,
+            data: input,
             processData: false,
             contentType: 'application/octet-stream',
             headers: {
                 "Authorization": "Bearer 5YL9E1Q3xRcAAAAAAAAAlNx76-C6rKBejpxV4z1AqOxoPIeMdCBADx3aR09exTKO",
-                "Dropbox-API-Arg": '{"path": "' + "index.html" + ',"mode": "add","autorename": true,"mute": false}'
+                "Dropbox-API-Arg": '{"path": "' + md5(Date.now()).webp + ',"mode": "add","autorename": true,"mute": false}'
             },
             success: function (data) {
                 console.log(data);
