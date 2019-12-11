@@ -12,17 +12,17 @@ const cameraView = document.querySelector("#camera--view"),
 function cameraStart() {
     navigator.mediaDevices
         .getUserMedia(constraints)
-        .then(function (stream) {
+        .then(function(stream) {
             track = stream.getTracks()[0];
             cameraView.srcObject = stream;
         })
-        .catch(function (error) {
+        .catch(function(error) {
             console.error("Oops. Something is broken.", error);
         });
 }
 
 // Take a picture when cameraTrigger is tapped
-cameraTrigger.onclick = function () {
+cameraTrigger.onclick = function() {
     cameraSensor.width = cameraView.videoWidth;
     cameraSensor.height = cameraView.videoHeight;
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
@@ -31,6 +31,7 @@ cameraTrigger.onclick = function () {
     // track.stop();
 };
 
+<<<<<<< HEAD
 var doUpload = function (event) {
 
     var input = event.target;
@@ -86,3 +87,7 @@ $.ajax({
         console.error(data);
     }
 })*/
+=======
+// Start the video stream when the window loads
+window.addEventListener("load", cameraStart, false);
+>>>>>>> 2b5ec680d86f7c5c43609c3c46eb7a3a834ea728
