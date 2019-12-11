@@ -31,7 +31,6 @@ cameraTrigger.onclick = function () {
     // track.stop();
 };
 
-<<<<<<< HEAD
 var doUpload = function (event) {
 
     var input = event.target;
@@ -87,7 +86,3 @@ $.ajax({
         console.error(data);
     }
 })*/
-=======
-// Start the video stream when the window loads
-window.addEventListener("load", cameraStart, false);
->>>>>>> 2b5ec680d86f7c5c43609c3c46eb7a3a834ea728
