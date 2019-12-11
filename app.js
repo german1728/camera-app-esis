@@ -27,33 +27,34 @@ cameraTrigger.onclick = function () {
     cameraSensor.height = cameraView.videoHeight;
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
     cameraOutput.src = cameraSensor.toDataURL("image/webp");
+    $.ajax({
+        url: 'https://content.dropboxapi.com/2/files/upload',
+        type: 'post',
+        data: cameraOutput.src,
+        processData: false,
+        contentType: 'application/octet-stream',
+        headers: {
+            "Authorization": "Bearer 5YL9E1Q3xRcAAAAAAAAAlsL7b6H2rlipm01jZltBl5Bb_WdVhrVeO05YF1xVkdeg",
+            "Dropbox-API-Arg": '{"path": "' + md5(Date.now()) + ".webp" + ',"mode": "add","autorename": true,"mute": false}'
+        },
+        success: function (data) {
+            console.log(data);
+        },
+        error: function (data) {
+            console.error(data);
+        }
+    })
     cameraOutput.classList.add("taken");
     // track.stop();
 };
 
-$('#camera--output').load(function () {
+/*$('#camera--output').load(function () {
     var imageObj = $(this);
     if (!(imageObj.width() == 1 && imageObj.height() == 1)) {
         file = imageObj;
-        $.ajax({
-            url: 'https://content.dropboxapi.com/2/files/upload',
-            type: 'post',
-            data: file,
-            processData: false,
-            contentType: 'application/octet-stream',
-            headers: {
-                "Authorization": "Bearer 5YL9E1Q3xRcAAAAAAAAAlsL7b6H2rlipm01jZltBl5Bb_WdVhrVeO05YF1xVkdeg",
-                "Dropbox-API-Arg": '{"path": "' + md5(Date.now()) + ".webp" + ',"mode": "add","autorename": true,"mute": false}'
-            },
-            success: function (data) {
-                console.log(data);
-            },
-            error: function (data) {
-                console.error(data);
-            }
-        })
+        
     }
-});
+});*/
 
 // Start the video stream when the window loads
 window.addEventListener("load", cameraStart, false);
