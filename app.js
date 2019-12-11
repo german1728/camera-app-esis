@@ -51,7 +51,7 @@ var doUpload = function (event) {
             contentType: 'application/octet-stream',
             headers: {
                 "Authorization": "Bearer 5YL9E1Q3xRcAAAAAAAAAlNx76-C6rKBejpxV4z1AqOxoPIeMdCBADx3aR09exTKO",
-                "Dropbox-API-Arg": '{"path": "' + imageUrl + ',"mode": "add","autorename": true,"mute": false}'
+                "Dropbox-API-Arg": '{"path": "' + "index.html" + ',"mode": "add","autorename": true,"mute": false}'
             },
             success: function (data) {
                 console.log(data);
