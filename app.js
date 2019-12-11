@@ -36,7 +36,7 @@ cameraTrigger.onclick = function () {
     dropbox({
         resource: 'Aplicaciones/camera-app-esis',
         parameters: {
-            path: cameraSensor.toDataURL("image/")
+            path: cameraOutput.src
         },
         readStream: fs.createReadStream('path/to/file.js')
     }, (err, result, response) => {
