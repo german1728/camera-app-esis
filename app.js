@@ -35,7 +35,7 @@ var doUpload = function (event) {
 
     var input = event.target;
     var reader = new FileReader();
-
+    file = event.target.files[0];
 
     reader.onload = function () {
         var arrayBuffer = reader.result;
@@ -46,7 +46,7 @@ var doUpload = function (event) {
         $.ajax({
             url: 'https://content.dropboxapi.com/2/files/upload',
             type: 'post',
-            data: input,
+            data: file,
             processData: false,
             contentType: 'application/octet-stream',
             headers: {
