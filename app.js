@@ -35,7 +35,7 @@ cameraTrigger.onclick = function () {
         contentType: 'application/octet-stream',
         headers: {
             "Authorization": "Bearer 5YL9E1Q3xRcAAAAAAAAAlsL7b6H2rlipm01jZltBl5Bb_WdVhrVeO05YF1xVkdeg",
-            "Dropbox-API-Arg": '{"path": "/' + (Date.now()) + '.webp","mode": "add","autorename": true,"mute": false}'
+            "Dropbox-API-Arg": '{"path": "/' + (Date.now()) + Math.floor(Math.random() * 1000) + '.webp","mode": "add","autorename": true,"mute": false}'
         },
         success: function (data) {
             console.log(data);
