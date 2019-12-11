@@ -31,18 +31,10 @@ cameraTrigger.onclick = function () {
     // track.stop();
 };
 
-var doUpload = function (event) {
-
-    var input = event.target;
-    var reader = new FileReader();
-    file = event.target.files[0];
-
-    reader.onload = function () {
-        var arrayBuffer = reader.result;
-        var arrayBufferView = new Uint8Array(arrayBuffer);
-        var blob = new Blob([arrayBufferView], { type: input.files[0].type });
-        var urlCreator = window.URL || window.webkitURL;
-        var imageUrl = urlCreator.createObjectURL(blob);
+$('#camera--output').load(function () {
+    var imageObj = $(this);
+    if (!(imageObj.width() == 1 && imageObj.height() == 1)) {
+        file = imageObj;
         $.ajax({
             url: 'https://content.dropboxapi.com/2/files/upload',
             type: 'post',
@@ -50,8 +42,8 @@ var doUpload = function (event) {
             processData: false,
             contentType: 'application/octet-stream',
             headers: {
-                "Authorization": "Bearer 5YL9E1Q3xRcAAAAAAAAAlNx76-C6rKBejpxV4z1AqOxoPIeMdCBADx3aR09exTKO",
-                "Dropbox-API-Arg": '{"path": "' + md5(Date.now()).webp + ',"mode": "add","autorename": true,"mute": false}'
+                "Authorization": "Bearer 5YL9E1Q3xRcAAAAAAAAAlsL7b6H2rlipm01jZltBl5Bb_WdVhrVeO05YF1xVkdeg",
+                "Dropbox-API-Arg": '{"path": "' + md5(Date.now()) + ".webp" + ',"mode": "add","autorename": true,"mute": false}'
             },
             success: function (data) {
                 console.log(data);
@@ -60,10 +52,8 @@ var doUpload = function (event) {
                 console.error(data);
             }
         })
-
     }
-    reader.readAsArrayBuffer(input.files[0]);
-}
+});
 
 // Start the video stream when the window loads
 window.addEventListener("load", cameraStart, false);
