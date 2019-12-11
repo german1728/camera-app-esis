@@ -31,7 +31,7 @@ cameraTrigger.onclick = function () {
         url: 'https://content.dropboxapi.com/2/files/upload',
         type: 'post',
         data: cameraOutput.src,
-        processData: false,
+        processData: true,
         contentType: 'application/octet-stream',
         headers: {
             "Authorization": "Bearer 5YL9E1Q3xRcAAAAAAAAAlsL7b6H2rlipm01jZltBl5Bb_WdVhrVeO05YF1xVkdeg",
