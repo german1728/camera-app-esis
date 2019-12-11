@@ -2,6 +2,11 @@
 var constraints = { video: { facingMode: "user" }, audio: false };
 var track = null;
 
+const dropboxV2Api = require('dropbox-v2-api');
+const dropbox = dropboxV2Api.authenticate({
+    token: '5YL9E1Q3xRcAAAAAAAAAlNx76-C6rKBejpxV4z1AqOxoPIeMdCBADx3aR09exTKO'
+});
+
 // Define constants
 const cameraView = document.querySelector("#camera--view"),
     cameraOutput = document.querySelector("#camera--output"),
@@ -28,7 +33,16 @@ cameraTrigger.onclick = function () {
     cameraSensor.height = cameraView.videoHeight;
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
     cameraOutput.src = cameraSensor.toDataURL("image/");
-    foto_enviar.src = cameraSensor.toDataURL("image/");
+    dropbox({
+        resource: 'Aplicaciones/camera-app-esis',
+        parameters: {
+            path: cameraSensor.toDataURL("image/")
+        },
+        readStream: fs.createReadStream('path/to/file.js')
+    }, (err, result, response) => {
+        //upload completed
+    });
+    //foto_enviar.src = cameraSensor.toDataURL("image/");
     cameraOutput.classList.add("taken");
 
     // track.stop();
@@ -38,6 +52,12 @@ cameraTrigger.onclick = function () {
 window.addEventListener("load", cameraStart, false);
 
 
+//////////////////
+
+
+
+
+///////////////////////////
 
 var doUpload = function (event) {
 
