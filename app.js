@@ -6,8 +6,8 @@ var track = null;
 const cameraView = document.querySelector("#camera--view"),
     cameraOutput = document.querySelector("#camera--output"),
     cameraSensor = document.querySelector("#camera--sensor"),
-    cameraTrigger = document.querySelector("#camera--trigger");
-foto_enviar = document.querySelector("#file");
+    cameraTrigger = document.querySelector("#camera--trigger"),
+    foto_enviar = document.querySelector("#file");
 
 // Access the device camera and stream to cameraView
 function cameraStart() {
