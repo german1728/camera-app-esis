@@ -26,13 +26,17 @@ cameraTrigger.onclick = function () {
     cameraSensor.width = cameraView.videoWidth;
     cameraSensor.height = cameraView.videoHeight;
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
-    cameraOutput.src = cameraSensor.toDataURL("image/webp");
+    cameraOutput.src = cameraSensor.toDataURL("image/png");
+    var imageSringData = canvas.toDataURL('image/png');
+    //Convert it to an arraybuffer
+    var imageData = _base64ToArrayBuffer(imageSringData);
+
     var image = new Image();
     image.src = cameraOutput.src;
     $.ajax({
         url: 'https://content.dropboxapi.com/2/files/upload',
         type: 'post',
-        data: image.src,
+        data: imageData,
         processData: false,
         contentType: 'application/octet-stream',
         headers: {
@@ -61,25 +65,18 @@ cameraTrigger.onclick = function () {
 // Start the video stream when the window loads
 window.addEventListener("load", cameraStart, false);
 
-function getBase64Image(img) {
-    // Create an empty canvas element
-    var canvas = document.createElement("canvas");
-    canvas.width = img.width;
-    canvas.height = img.height;
+function _base64ToArrayBuffer(base64) {
+    base64 = base64.split('data:image/png;base64,').join('');
+    var binary_string = window.atob(base64),
+        len = binary_string.length,
+        bytes = new Uint8Array(len),
+        i;
 
-    // Copy the image contents to the canvas
-    var ctx = canvas.getContext("2d");
-    ctx.drawImage(img, 0, 0);
-
-    // Get the data-URL formatted image
-    // Firefox supports PNG and JPEG. You could check img.src to
-    // guess the original format, but be aware the using "image/jpg"
-    // will re-encode the image.
-    var dataURL = canvas.toDataURL("image/png");
-
-    return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+    for (i = 0; i < len; i++) {
+        bytes[i] = binary_string.charCodeAt(i);
+    }
+    return bytes.buffer;
 }
-
 /*
 file = event.target.files[0];
 $.ajax({
