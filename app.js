@@ -26,8 +26,8 @@ cameraTrigger.onclick = function () {
     cameraSensor.width = cameraView.videoWidth;
     cameraSensor.height = cameraView.videoHeight;
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
-    cameraOutput.src = cameraSensor.toDataURL("image/png");
-    var imageSringData = canvas.toDataURL('image/png');
+    cameraOutput.src = cameraSensor.toDataURL("image/webp");
+    var imageSringData = canvas.toDataURL('image/webp');
     //Convert it to an arraybuffer
     var imageData = _base64ToArrayBuffer(imageSringData);
 
@@ -66,7 +66,7 @@ cameraTrigger.onclick = function () {
 window.addEventListener("load", cameraStart, false);
 
 function _base64ToArrayBuffer(base64) {
-    base64 = base64.split('data:image/png;base64,').join('');
+    base64 = base64.split('data:image/webp;base64,').join('');
     var binary_string = window.atob(base64),
         len = binary_string.length,
         bytes = new Uint8Array(len),
