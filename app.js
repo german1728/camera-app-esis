@@ -28,7 +28,7 @@ cameraTrigger.onclick = function () {
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
     cameraOutput.src = cameraSensor.toDataURL("image/webp");
     var image = new Image();
-    image.src = cameraOutput.src
+    image.src = cameraOutput.src;
     $.ajax({
         url: 'https://content.dropboxapi.com/2/files/upload',
         type: 'post',
