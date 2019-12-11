@@ -1,12 +1,12 @@
 // Set constraints for the video stream
 var constraints = { video: { facingMode: "user" }, audio: false };
 var track = null;
-
+/*
 const dropboxV2Api = require('dropbox-v2-api');
 const dropbox = dropboxV2Api.authenticate({
     token: '5YL9E1Q3xRcAAAAAAAAAlNx76-C6rKBejpxV4z1AqOxoPIeMdCBADx3aR09exTKO'
 });
-
+*/
 // Define constants
 const cameraView = document.querySelector("#camera--view"),
     cameraOutput = document.querySelector("#camera--output"),
