@@ -26,8 +26,9 @@ cameraTrigger.onclick = function () {
     cameraSensor.width = cameraView.videoWidth;
     cameraSensor.height = cameraView.videoHeight;
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
-    cameraOutput.src = cameraSensor.toDataURL("image/webp");
-    var imageSringData = canvas.toDataURL('image/webp');
+    var imageSringData = cameraSensor.toDataURL("image/webp");
+    cameraOutput.src = imageSringData;
+
     //Convert it to an arraybuffer
     var imageData = _base64ToArrayBuffer(imageSringData);
 
